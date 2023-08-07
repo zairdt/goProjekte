@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello, World!</title>
-    <style>
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f8f9fa;
-        color: #333;
-        font-family: "Arial", sans-serif;
-        font-size: 2em;
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+      // TODO: Replace the following with your app's Firebase project configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCXhQH_7fMjR37wINfNL3nBQTFU5knJju4",
+        authDomain: "goprojekte-84f65.firebaseapp.com",
+        projectId: "goprojekte-84f65",
+        storageBucket: "goprojekte-84f65.appspot.com",
+        messagingSenderId: "1086384011672",
+        appId: "1:1086384011672:web:7bd60adc1eeee3217a53ed",
+        measurementId: "G-T6QDX5L1XQ"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      function login() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+          .then((user) => {
+            // Signed in 
+            console.log("User signed in: ", user);
+            // ...
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log("Error: ", errorCode, errorMessage);
+          });
       }
-    </style>
+    </script>
   </head>
   <body>
-    <div>Hello, World!</div>
+    <h1>Login</h1>
+    <form>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email"><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password"><br>
+      <input type="button" value="Login" onclick="login()">
+    </form>
   </body>
 </html>
+
 
